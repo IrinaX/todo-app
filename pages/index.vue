@@ -3,25 +3,35 @@
     <div class="container">
       <h1 class="todo__title">Todo App</h1>
       <div class="todo__body">
+        <div class="text-center my-5"
+             v-if="d_taskList.length===0"
+        >
+          Add your new task :)
+        </div>
         <div class="todo__item"
              v-for="(task, key) in d_taskList"
         >
+
           <label class="checkbox__label">
-            {{ task.text }}
-            <input type="checkbox" class="checkbox__input"
-                   @click="selectTask(key)"
-            >
-            <span class="checkbox__icon"></span>
+            <span class="mr-3" :class="{'todo__item-done': task.done}">
+              {{ task.text }}
+            </span>
+            <span class="todo__item-btns">
+              <input type="checkbox" class="checkbox__input"
+                     @click="task.done = !task.done"
+              >
+              <span class="checkbox__icon"></span>
+              <button class="button btn_delete"
+                      @click="deleteTask(key)"
+              ></button>
+            </span>
           </label>
         </div>
-        <div class="todo__btns">
-          <button class="button btn_add"
-                  @click="showModal"
-          ></button>
-<!--          <button class="button btn_delete"-->
-<!--                  @click="deleteTask(d_taskList,d_checkedTasks)"-->
-<!--          ></button>-->
-        </div>
+
+        <button class="button btn_add"
+                @click="showModal"
+        ></button>
+
         <div class="modal-fade"
              v-if="d_modalActive"
              @click="d_modalActive=false"
@@ -59,7 +69,6 @@ export default {
     return {
       d_modalActive: false,
       d_newTodo: null,
-      d_checkedTasks: [],
       d_taskList: [
         {
           text: "Create new project",
@@ -88,15 +97,12 @@ export default {
       this.d_modalActive = false;
       document.documentElement.style.overflowY = "auto";
     },
-    selectTask(key) {
-      console.log(key);
-      this.d_checkedTasks.push(key);
+    selectTask(task) {
+      console.log(task);
+// task.style.textDecoration='underline';
     },
-    deleteTask(arr, indexes) {
-      this.d_taskList = arr.sort().filter(function (e, i) {
-        return indexes.indexOf(i) < 0;
-      });
-
+    deleteTask(key) {
+      this.d_taskList.splice(key, 1);
     },
   },
 }
@@ -119,16 +125,20 @@ export default {
     padding: 15px;
     margin-bottom: 21px;
 
+    &-done {
+      text-decoration: line-through;
+    }
+
+    &-btns {
+      width: fit-content;
+      margin: 0 0 0 auto;
+      display: flex;
+      justify-content: space-between;
+    }
+
     &:last-child {
       margin-bottom: 0;
     }
-  }
-
-  &__btns {
-    width: fit-content;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
   }
 }
 
@@ -141,6 +151,7 @@ export default {
 }
 
 .checkbox__label {
+  overflow-wrap: anywhere;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -151,6 +162,8 @@ export default {
 .checkbox__icon {
   align-self: baseline;
   position: relative;
+  margin: auto;
+  margin-right: 15px;
 
   &::before {
     content: '';
@@ -229,6 +242,12 @@ export default {
 }
 
 .btn_add {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  margin-left: -20px;
+
+
   &:after {
     background: url('../components/VButton/plus.svg') center no-repeat;
   }
@@ -284,6 +303,10 @@ export default {
   border-radius: 27px;
   padding: 20px;
   background: $light;
+
+  @include media-breakpoint-down(xs) {
+    width: 100%;
+  }
 
   &__title {
     margin-bottom: 0;
