@@ -1,0 +1,90 @@
+@mixin styled-scroll {
+  @include media-breakpoint-up(lg) {
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: darken($light, 20%);
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+
+  }
+}
+
+@mixin scroll-sidebar {
+  @include media-breakpoint-up(lg) {
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 0, 0, 0.6);
+    }
+  }
+}
+
+@mixin scroll-textarea {
+  @include media-breakpoint-up(lg) {
+    &::-webkit-scrollbar {
+      width: 28px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #f2f2f2;
+      border-radius: 10px;
+      border: 8px solid white;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    &::-webkit-scrollbar-button:vertical {
+      width: 20px;
+      height: 20px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 8px auto;
+    }
+
+    &::-webkit-scrollbar-button:vertical:increment {
+      background-image: url(/images/scroll-down.svg);
+    }
+
+    &::-webkit-scrollbar-button:vertical:decrement {
+      background-image: url(/images/scroll-up.svg);
+    }
+  }
+}

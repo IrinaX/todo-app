@@ -1,0 +1,53 @@
+$primary: rgba(#4EDBBB, 1);
+$secondary: rgba(#5CA8E0, 1);
+$extra: rgba(#B00185, 1);
+$dark: rgba(#4A4A4A, 1);
+$success: rgba(#2EC69C, 1);
+$danger: rgba(#FF0000, 1);
+$light: rgba(#fff, 1);
+
+$base-font-family: 'Roboto', sans-serif;
+$header-font-family: 'Roboto', sans-serif;
+
+$base-font: 300 16px/100% $base-font-family;
+
+$h1-font: 300 28px/100% $header-font-family;
+$h1-font-sm: 300 24px/100% $header-font-family;
+
+$h2-font: 300 26px/115% $header-font-family;
+$h2-font-sm: 300 22px/115% $header-font-family;
+
+$h3-font: 300 24px/115% $header-font-family;
+$h3-font-sm: 300 20px/115% $header-font-family;
+
+$h4-font: 300 22px/130% $base-font-family;
+$h4-font-sm: 300 18px/130% $base-font-family;
+
+$h5-font: 300 20px/125% $base-font-family;
+$h5-font-sm: 300 16px/125% $base-font-family;
+
+$small-font: 400 14px/18px $base-font-family;
+$button-font: 300 16px/20px $base-font-family;
+
+$card-shadow: 0px 4px 13px rgba(0, 0, 0, 0.25);
+
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1260px
+);
+
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1230px,
+);
+
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "mixins/typo";
+@import "mixins/scroll";

@@ -1,0 +1,12 @@
+<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+<line x1="15" y1="3.5" x2="17" y2="3.5" stroke="white"/>
+<path d="M2.5 3.5H14.5V15C14.5 16.933 12.933 18.5 11 18.5H6C4.067 18.5 2.5 16.933 2.5 15V3.5Z" stroke="white"/>
+<line x1="5.5" y1="7" x2="5.5" y2="15" stroke="white"/>
+<line x1="7.5" y1="7" x2="7.5" y2="15" stroke="white"/>
+<line x1="9.5" y1="7" x2="9.5" y2="15" stroke="white"/>
+<line x1="11.5" y1="7" x2="11.5" y2="15" stroke="white"/>
+<line x1="5.5" y1="3" x2="5.5" stroke="white"/>
+<line x1="6" y1="0.5" x2="11" y2="0.5" stroke="white"/>
+<line x1="11.5" x2="11.5" y2="3" stroke="white"/>
+<line y1="3.5" x2="2" y2="3.5" stroke="white"/>
+</svg>
