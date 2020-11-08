@@ -1,6 +1,5 @@
 body {
   font: $base-font;
-  font-weight: 300;
 }
 
 @each $level in (1, 2, 3, 4, 5) {

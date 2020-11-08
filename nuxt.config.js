@@ -37,10 +37,17 @@ export default {
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {
-  },
+
+  // build: {
+  //   publicPath: '/nuxt/'
+  // },
+  // router: {
+  //   base: './',
+  //   mode: 'hash'
+  // },
   styleResources: {
     scss: ['../assets/sass/_variables.scss']
   },
+
 
 }

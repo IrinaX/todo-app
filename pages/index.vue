@@ -1,37 +1,43 @@
 <template>
   <div class="todo">
     <div class="container">
-      <h1 class="todo__title">Todo App</h1>
       <div class="todo__body">
-        <div class="text-center my-5"
+        <div class="todo__get-started"
              v-if="d_taskList.length===0"
         >
-          Add your new task :)
+          <img src="./getStartedImg.png" alt="" class="mr-4 mb-3">
+          <div>Add a task to get started</div>
         </div>
         <div class="todo__item"
              v-for="(task, key) in d_taskList"
         >
 
           <label class="checkbox__label">
-            <span class="mr-3" :class="{'todo__item-done': task.done}">
-              {{ task.text }}
-            </span>
-            <span class="todo__item-btns">
+            <span class="d-flex align-items-center">
+            <span class="todo__item-checkbox">
               <input type="checkbox" class="checkbox__input"
                      @click="task.done = !task.done"
               >
               <span class="checkbox__icon"></span>
-              <button class="button btn_delete"
-                      @click="deleteTask(key)"
-              ></button>
             </span>
+            <span class="mr-3"
+                  :class="{'todo__item-done': task.done}"
+                  v-html="task.text"
+            >
+<!--              {{ task.text }}-->
+            </span>
+            </span>
+            <button class="button btn_delete"
+                    v-if="task.done"
+                    @click="deleteTask(key)"
+            ></button>
           </label>
         </div>
-
-        <button class="button btn_add"
-                @click="showModal"
-        ></button>
-
+        <div class="btn_add-wrap">
+          <button class="button btn_add"
+                  @click="showModal"
+          ></button>
+        </div>
         <div class="modal-fade"
              v-if="d_modalActive"
              @click="d_modalActive=false"
@@ -45,7 +51,9 @@
                     @click="d_modalActive=false"
             ></button>
           </div>
-          <textarea class="todo__textarea" v-model="d_newTodo" placeholder="Type your new task..." rows="10"></textarea>
+          <textarea class="todo__textarea" placeholder="Type your new task..." rows="10"
+                    v-model="d_newTodo"
+          ></textarea>
           <button class="button btn_submit"
                   @click="addNewTask"
           >Submit
@@ -69,6 +77,7 @@ export default {
     return {
       d_modalActive: false,
       d_newTodo: null,
+      d_newTodoComputed:null,
       d_taskList: [
         {
           text: "Create new project",
@@ -82,6 +91,7 @@ export default {
     };
   },
   methods: {
+
     showModal() {
       document.documentElement.style.overflowY = "hidden";
       this.d_modalActive = true;
@@ -89,13 +99,15 @@ export default {
     addNewTask() {
       if (this.d_newTodo) {
         this.d_taskList.push({
-          text: this.d_newTodo,
+          text: this.d_newTodo.replace(/\n/g, "<br>"),  //c_newTodo
           done: false,
         });
       }
+      console.log(this.d_newTodo);
       this.d_newTodo = null;
       this.d_modalActive = false;
       document.documentElement.style.overflowY = "auto";
+
     },
     selectTask(task) {
       console.log(task);
@@ -105,33 +117,41 @@ export default {
       this.d_taskList.splice(key, 1);
     },
   },
-}
-;
+
+
+
+
+};
 </script>
 
 <style lang="scss">
 .todo {
-  padding: 30px 0;
+  padding: 30px 0 145px;
 
-  &__title {
+  &__get-started {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-140px);
     text-align: center;
-    color: #4A4A4A;
-    margin-bottom: 21px;
+    left: 0;
+    right: 0;
   }
 
+
   &__item {
-    box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.25);
-    border-radius: 27px;
+    background: #FFFFFF;
+    border-radius: 10px;
     padding: 15px;
-    margin-bottom: 21px;
+    margin-bottom: 15px;
 
     &-done {
       text-decoration: line-through;
+      color: #999797;
+      font-weight: 300;
     }
 
-    &-btns {
+    &-checkbox {
       width: fit-content;
-      margin: 0 0 0 auto;
       display: flex;
       justify-content: space-between;
     }
@@ -183,7 +203,6 @@ export default {
     display: block;
     width: 22px;
     height: 22px;
-    box-shadow: 0 2px 13px 1px rgba(0, 0, 0, 0.25);
     border-radius: 50px;
     border: none;
     background: $light;
@@ -196,21 +215,20 @@ export default {
 }
 
 .checkbox__input:checked + .checkbox__icon::after {
-  background: $primary;
+  background: $success;
 }
 
 .button {
-  background: $secondary;
+  background: aqua;
   position: relative;
   color: white;
   font: $button-font;
   border: none;
-  box-shadow: $card-shadow;
+  box-shadow: none;
   border-radius: 50px;
-  padding: 10px;
   z-index: 1;
   cursor: pointer;
-  transition: all .1s ease-in;
+  transition: all .1s ease;
 
   &:active {
     transform: scale(.8);
@@ -221,48 +239,65 @@ export default {
     outline: none;
   }
 
-  &:hover {
-    background: darken($secondary, 20%);
-  }
+
 }
 
-.btn_add, .btn_close, .btn_delete {
-  width: 41px;
-  height: 41px;
+.btn_add-wrap {
+  content: '';
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(180.03deg, rgba(240, 240, 240, 0) 0.03%, #F0F0F0 71.92%);
+}
+
+.btn_add {
+  width: 62px;
+  height: 62px;
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  margin-left: -31px;
+  box-shadow: $card-shadow;
+  background: $primary;
+
+  &:hover {
+    background: darken($primary, 20%);
+  }
 
   &:after {
     content: '';
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 17px;
+    left: 17px;
     display: block;
-    width: 21px;
-    height: 21px;
-  }
-}
-
-.btn_add {
-  position: fixed;
-  bottom: 50px;
-  left: 50%;
-  margin-left: -20px;
-
-
-  &:after {
+    width: 29px;
+    height: 29px;
     background: url('../components/VButton/plus.svg') center no-repeat;
   }
 }
 
 .btn_delete {
-  &:after {
-    background: url('../components/VButton/delete.svg') center no-repeat;
-  }
-}
+  background: $danger;
+  min-width: 22px;
+  height: 22px;
 
-.btn_close {
+  &:hover {
+    background: darken($danger, 20%);
+  }
+
   &:after {
-    background: url('../components/VButton/plus.svg') center no-repeat;
-    transform: rotate(45deg);
+    content: '';
+    position: absolute;
+    top: 6.33px;
+    left: 6.33px;
+    display: block;
+    width: 9.34px;
+    height: 9.36px;
+    background: url('../components/VButton/delete.svg') center no-repeat;
   }
 }
 
