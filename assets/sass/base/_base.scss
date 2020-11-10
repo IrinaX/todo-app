@@ -6,6 +6,10 @@ body {
   background-size: cover;
   color: $dark;
   backface-visibility: hidden;
+  @media (prefers-color-scheme: dark) {
+    background: $black;
+    color: $light;
+  }
 }
 
 html, body {

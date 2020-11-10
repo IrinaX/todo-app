@@ -1,10 +1,18 @@
-$primary: rgba(#F8C50F, 1);
+$primary: rgba(#ffa000, 1);
 $secondary: rgba(#5CA8E0, 1);
 $extra: rgba(#B00185, 1);
-$dark: rgba(#4A4A4A, 1);
+$notActive: rgba(#7D7D7D, 1);
 $success: rgba(#37D7B3, 1);
 $danger: rgba(#F80F0F, 1);
 $light: rgba(#F0F0F0, 1);
+$black:rgba(#000, 1);
+$white:rgba(#fff, 1);
+
+$gradient:linear-gradient(180.03deg, rgba(240, 240, 240, 0) 0.03%, #F0F0F0 71.92%);
+$dGradient:linear-gradient(180.03deg, rgba(0, 0, 0, 0) 0.03%, #000000 71.92%);
+
+$dDark:rgba(#181818, 1);
+$dCheckNotActive:rgba(#373737,1);
 
 $base-font-family: 'Roboto', sans-serif;
 $header-font-family: 'Roboto', sans-serif;
@@ -32,18 +40,18 @@ $button-font: 300 16px/20px $base-font-family;
 $card-shadow: 0px 4px 13px rgba(0, 0, 0, 0.25);
 
 $grid-breakpoints: (
-        xs: 0,
-        sm: 576px,
-        md: 768px,
-        lg: 992px,
-        xl: 1260px
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1260px
 );
 
 $container-max-widths: (
-        sm: 540px,
-        md: 720px,
-        lg: 960px,
-        xl: 1230px,
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1230px,
 );
 
 @import "../../node_modules/bootstrap/scss/functions";
