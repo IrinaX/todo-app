@@ -38,13 +38,16 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
 
-  build: {
-    publicPath: '/nuxt/'
-  },
-  router: {
-    base: './',
-    mode: 'hash'
-  },
+
+  // need for cordova generate path static files, command: nuxt generate
+  // build: {
+  //   publicPath: '/nuxt/'
+  // },
+  // router: {
+  //   base: './',
+  //   mode: 'hash'
+  // },
+
   styleResources: {
     scss: ['../assets/sass/_variables.scss']
   },

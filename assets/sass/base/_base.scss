@@ -2,14 +2,10 @@ body {
   width: 100%;
   margin: 0;
   overflow-x: hidden;
-  background: $light;
+  background: $light !important;
   background-size: cover;
-  color: $dark;
+  color: $black !important;
   backface-visibility: hidden;
-  @media (prefers-color-scheme: dark) {
-    background: $black;
-    color: $light;
-  }
 }
 
 html, body {
