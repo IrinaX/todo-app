@@ -39,7 +39,7 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
 
 
-  // need for cordova generate path static files, command: nuxt generate
+  // uncomment for cordova generate path static files, command: nuxt generate
   // build: {
   //   publicPath: '/nuxt/'
   // },

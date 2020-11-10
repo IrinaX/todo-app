@@ -117,7 +117,6 @@ export default {
         e.preventDefault();
         this.closeModal();
       }
-      document.removeEventListener("backbutton", this.onBackKeyDown, false);
     },
     showModal() {
       document.documentElement.style.overflowY = "hidden";
@@ -151,6 +150,7 @@ export default {
 
       } else {
         document.removeEventListener("deviceready", this.onDeviceReady, false);
+        document.removeEventListener("backbutton", this.onBackKeyDown, false);
       }
     }
   },
